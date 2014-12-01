@@ -1,0 +1,26 @@
+{% extends 'default.html' %}
+{% block body %}
+	{% if len(tasks) == 0 %}
+		<div class="jumbotron">
+			<h1>You don't have any tasks </h1>
+			<p><a class="btn btn-primary btn-lg" href="/newtask/{{ project.url }}" role="button">Fix That</a></p>
+		</div>
+	{% else %}
+		<ul class="pager">
+		    <li class="previous"><a href="/list"><span aria-hidden="true">&larr;</span> Back</a></li>
+  		</ul>
+		<table class="table" style="margin-bottom: 0px;">
+			{% for task in tasks %}
+				<tr class="{{ task.project.theme }}-{{ get_level(task.dueDate) }}">
+					<td>{{ task.title }}</td>
+					<td>{{ task.details }}</td>
+					<td style="text-align: right;">{{ moment(task.dueDate).fromNow() }}</td>
+					<td style="text-align: center;"><a href="?edit={{ task.objectId }}" class="edit-task"><span class="glyphicon glyphicon-edit"></span></a>
+					<a href="?del={{ task.objectId }}" class="del-task"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+					<td><input type="checkbox" class="completed" tid="{{ task.objectId }}" {% if task.completed %}checked{% endif %}></td>
+				</tr>
+			{% endfor %}
+		</table>
+		<a href="/newtask/{{ project.url }}" class="btn btn-primary btn-block">New Task</a>
+	{% endif %}
+{% endblock %}
