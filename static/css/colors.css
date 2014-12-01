@@ -1,125 +1,96 @@
 .Light_Green-l1 {
-	cursor: move;
 	background-color : #66FF33;
 }
 .Light_Green-l2 {
-	cursor: move;
 	background-color : #75FF47;
 }
 .Light_Green-l3 {
-	cursor: move;
 	background-color : #85FF5C;
 }
 .Light_Green-l4 {
-	cursor: move;
 	background-color : #94FF70;
 }
 .Light_Green-l5 {
-	cursor: move;
 	background-color : #A3FF85;
 }
 .Light_Green-l6 {
-	cursor: move;
 	background-color : #B2FF99;
 }
 .Light_Green-l7 {
-	cursor: move;
 	background-color : #C2FFAD;
 }
 .Light_Green-l8 {
-	cursor: move;
 	background-color : #D1FFC2;
 }
 .Dark_Green-l1 {
-	cursor: move;
 	background-color : #00FF00;
 }
 .Dark_Green-l2 {
-	cursor: move;
 	background-color : #19FF19;
 }
 .Dark_Green-l3 {
-	cursor: move;
 	background-color : #4DFF4D;
 }
 .Dark_Green-l5 {
-	cursor: move;
 	background-color : #66FF66;
 }
 .Dark_Green-l6 {
-	cursor: move;
 	background-color : #80FF80;
 }
 .Dark_Green-l7 {
-	cursor: move;
 	background-color : #99FF99;
 }
 .Dark_Green-l8 {
-	cursor: move;
 	background-color : #B2FFB2;
 }
 .Turquoise-l1 {
-	cursor: move;
 	background-color : #00FF99;
 }
 .Turquoise-l2 {
-	cursor: move;
 	background-color : #19FFA3;
 }
 .Turquoise-l3 {
-	cursor: move;
 	background-color : #33FFAD;
 }
 .Turquoise-l4 {
-	cursor: move;
 	background-color : #4DFFB8;
 }
 .Turquoise-l5 {
-	cursor: move;
 	background-color : #66FFC2;
 }
 .Turquoise-l6 {
-	cursor: move;
 	background-color : #80FFCC;
 }
 .Turquoise-l7 {
-	cursor: move;
 	background-color : #99FFD6;
 }
 .Turquoise-l8 {
-	cursor: move;
 	background-color : #B2FFE0;
 }
 .Cyan-l1 {
-	cursor: move;
 	background-color : #00FFFF;
 }
 .Cyan-l2 {
-	cursor: move;
 	background-color : #19FFFF;
 }
 .Cyan-l3 {
-	cursor: move;
 	background-color : #33FFFF;
 }
 .Cyan-l4 {
-	cursor: move;
 	background-color : #4DFFFF;
 }
 .Cyan-l5 {
-	cursor: move;
 	background-color : #66FFFF;
 }
 .Cyan-l6 {
-	cursor: move;
 	background-color : #80FFFF;
 }
 .Cyan-l7 {
-	cursor: move;
 	background-color : #99FFFF;
 }
 .Cyan-l8 {
-	cursor: move;
 	background-color : #B2FFFF;
 }
-
+.clickableRow {
+	cursor: pointer;
+}

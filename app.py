@@ -120,6 +120,9 @@ def new_task(projectUrl=None):
 		).save()
 		return redirect(url_for("project_tasks", projectUrl=projectUrl))
 	return render_template("newTask.html", project=project)
+@app.route("/all")
+def all_tasks():
+	return "NYI"
 @app.route("/edittask/<taskId>", methods=["GET", "POST"])
 def edit_task(taskId=None):
 	if not session.get("logged_in"):
@@ -161,7 +164,7 @@ def login():
 		except:
 			flash("bad login")
 	return render_template("login.html")
-	
+
 if __name__ == "__main__":
 	app.secret_key = "907470"
 	app.run(debug=True)

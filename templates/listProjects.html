@@ -1,0 +1,28 @@
+{%extends 'layout.html' %}
+{% block body %}
+{% if len(projects) == 0 %}
+	<div class="jumbotron">
+		<h1>Welcome!</h1>
+		<p>You don't have any projects :(</p>
+		<p><a class="btn btn-default btn-lg" href="/newproj" role="button">Fix That</a></p>
+	</div>
+{% else %}
+	<a class="btn btn-default btn-block" href="/newproj">New Project</a>
+	<table role="table">
+		{% for project in projects %}
+			<tr class="clickableRow {{ project.theme }}-l1" href="/tasks/{{ project.url }}">
+				<td>
+					{{ project.name }}
+				</td>
+				<td>
+					{{ project.detail }}
+				</td>
+				<td syle="text-align:right;">
+					<a href="/editproj/{{ project.url }}"><span data-toggle="tooltip" data-placement="top" title="Edit Project" class="glyphicon glyphicon-edit"></span></a>
+					<a href="/delproj/{{ project.url }}"><span data-toggle="tooltip" data-placement="top" title="Delete Project" class="glyphicon glyphicon-remove-circle"></span></a>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+	<a class="btn btn-default btn-block" href=""></a>
+{% endblock %}
