@@ -1,0 +1,24 @@
+{%extends 'layout.html' %}
+{% block body %}
+<form role="form" method="POST" action="{{ url_for('new_project') }}">
+	<div class="form-group">
+		<label for="projectName">Project Name</label>
+		<input type="text" class="form-control" name="projectName" placeholder="Project Name" required>
+	</div>
+	<div class="form-group">
+		<label for="projectDetail">Description</label>
+		<input type="text" class="form-control" name="projectDetail" placeholder="Description">
+	</div>
+	<div class="form-group">
+		<label for="projectTheme">Color</label>
+		<select name="projectTheme" class="selectpicker">
+			<option value="Light_Green">Light Green</option>
+			<option value="Dark_Green">Dark Green</option>
+			<option value="Turquoise">Turquoise</option>
+			<option value="Cyan">Cyan</option>
+			<option disabled="disabled">More To Come...</option>
+		</select>
+	</div>
+	<button type="submit" class="btn btn-default">Submit</button>
+</form>
+{% endblock %}

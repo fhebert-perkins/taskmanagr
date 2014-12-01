@@ -8,7 +8,7 @@
 	</div>
 {% else %}
 	<a class="btn btn-default btn-block" href="/newproj">New Project</a>
-	<table role="table">
+	<table role="table" class="table">
 		{% for project in projects %}
 			<tr class="clickableRow {{ project.theme }}-l1" href="/tasks/{{ project.url }}">
 				<td>
@@ -24,5 +24,6 @@
 			</tr>
 		{% endfor %}
 	</table>
-	<a class="btn btn-default btn-block" href=""></a>
+	<a class="btn btn-default btn-block" href="/all">All Tasks</a>
+{% endif %}
 {% endblock %}

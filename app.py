@@ -1,5 +1,5 @@
-from flask import flask, render_template, redirect, request, session, url_for
-from flask.ext.moment import moment
+from flask import Flask, render_template, redirect, request, session, url_for, flash
+from flask.ext.moment import Moment
 
 from uuid import uuid4
 
@@ -10,6 +10,7 @@ from creds import *
 from parse_rest.connection import register
 from parse_rest.datatypes import Object
 from parse_rest.user import User
+
 register(PARSE_appId, PARSE_apiKey)
 
 class Projects(Object):
@@ -21,10 +22,10 @@ class _User(Object):
 
 app = Flask(__name__)
 
-@app.before_request()
+@app.before_request
 def setup_env():
-	app.jinja2_env.globals["len"] = len
-	app.jinja2_env.globals["sorter"] = sorter
+	app.jinja_env.globals["len"] = len
+	app.jinja_env.globals["sorter"] = sorter
 
 @app.route("/")
 @app.route("/list")
@@ -39,10 +40,10 @@ def new_project():
 		return redirect(url_for("login"))
 	if request.method == "POST":
 		Projects(
-			name=request.form["projectTitle"],
+			name=request.form["projectName"],
 			detail=request.form["projectDetail"],
 			url=uuid4().hex,
-			theme=request.form["projectTheme"]
+			theme=request.form["projectTheme"],
 			user=_User.Query.get(objectId=session.get("uid")),
 			userId=session.get("uid")
 			).save()
@@ -96,7 +97,7 @@ def project_tasks(projectUrl=None):
 	if project.userId != session.get("uid"):
 		return redirect(url_for("list_projects"))
 	tasks = Tasks.Query.filter(userId=session.get("uid"), projectUrl=projectUrl)
-	return render_template("listTasks.html", tasks=tasks)
+	return render_template("listTasks.html", tasks=tasks, project=project)
 @app.route("/newtask/<projectUrl>", methods=["GET","POST"])
 def new_task(projectUrl=None):
 	if not session.get("logged_in"):
@@ -127,7 +128,7 @@ def all_tasks():
 def edit_task(taskId=None):
 	if not session.get("logged_in"):
 		return redirect(url_for("login"))
-	if taskId=None:
+	if taskId == None:
 		return redirect(url_for("project_list"))
 	try:
 		task = Tasks.Query.get(objectId=taskId, userId=session.get("uid"))
@@ -160,9 +161,12 @@ def login():
 		return redirect(url_for("list_projects"))
 	if request.method == "POST":
 		try:
-			User.login(request.form["username"], request.form["password"])
+			u = User.login(request.form["username"], request.form["password"])
+			session["logged_in"] = True
+			session["uid"] = u.objectId
 		except:
 			flash("bad login")
+
 	return render_template("login.html")
 
 if __name__ == "__main__":
