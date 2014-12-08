@@ -20,3 +20,11 @@ def sorter(then):
 		return "l7"
 	else:
 		return "l8"
+
+def format_dueDate(duedate):
+	from datetime import date
+	from datetime import datetime
+	year = int(duedate.split("-")[0])
+	month= int(duedate.split("-")[1])
+	day  = int(duedate.split("-")[2])
+	return datetime.combine(date(year, month, day), datetime.min.time())

@@ -18,14 +18,34 @@
 </head>
 <body>
 	<div class="container">
+		<div>
+			<ul class="nav nav-tabs pull-right">
+				<li role="presentation"><a href="/list">Projects</a></li>
+				<li role="presentation"><a href="/all">All Tasks</a></li>
+				<!-- <li role="presentation" class=""><a href="/settings">Profile</a></li> -->
+			</ul>
+		</div>
+		{% for message in get_flashed_messages() %}
+			<div class="alert alert-warning alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				{{ message }}
+			</div>
+		{% endfor %}
 		{% block body %}
 		{% endblock %}
 	</div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-<script src="/static/js/custom.js"></script>
-<script src="/static/js/bootstrap-select.min.js"></script>
-<script>$('.selectpicker').selectpicker();</script>
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/custom.js"></script>
+	<script src="/static/js/bootstrap-select.min.js"></script>
+	{{ moment.include_moment() }}
+	<script>$('.selectpicker').selectpicker();$(function () {$('[data-toggle="tooltip"]').tooltip()})</script>
+	<script>
+	$('[role="presentation"]').each(function(){
+		if (window.location.pathname === $(this).find('a').attr('href')){
+			$(this).addClass("active");
+		}
+	});
+	</script>
 </body>
 </html>

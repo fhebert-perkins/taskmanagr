@@ -1,14 +1,14 @@
 {%extends 'layout.html' %}
 {% block body %}
-<h3>New Project <small><a href="/list">Go Back</a></small></h3>
-<form role="form" method="POST" action="{{ url_for('new_project') }}">
+<h3>Editing {{ project.name }}</h3>
+<form role="form" method="POST" action="{{ url_for('edit_project', projectUrl=project.url) }}">
 	<div class="form-group">
 		<label for="projectName">Project Name</label>
-		<input type="text" class="form-control" name="projectName" placeholder="Project Name" required>
+		<input type="text" class="form-control" name="projectTitle" value="{{ project.name }}" placeholder="Project Name" required>
 	</div>
 	<div class="form-group">
 		<label for="projectDetail">Description</label>
-		<input type="text" class="form-control" name="projectDetail" placeholder="Description">
+		<input type="text" class="form-control" value="{{ project.detail }}" name="projectDetail" placeholder="Description">
 	</div>
 	<div class="form-group">
 		<label for="projectTheme">Color</label>
@@ -20,6 +20,6 @@
 			<option disabled="disabled">More To Come...</option>
 		</select>
 	</div>
-	<button type="submit" class="btn btn-default">New Project</button>
+	<button type="submit" class="btn btn-default">Update Project</button>
 </form>
 {% endblock %}

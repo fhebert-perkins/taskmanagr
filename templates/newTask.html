@@ -1,0 +1,19 @@
+{%extends 'layout.html' %}
+{% block body %}
+<h3>New Task in {{ project.name }}</h3>
+<form role="form" method="POST" action="{{ url_for('new_task', projectUrl=project.url) }}">
+	<div class="form-group">
+		<label for="taskTitle">Project Name</label>
+		<input type="text" class="form-control" name="taskTitle" placeholder="Task Name" required>
+	</div>
+	<div class="form-group">
+		<label for="taskDetail">Description</label>
+		<input type="text" class="form-control" name="taskDetail" placeholder="Description">
+	</div>
+	<div class="form-group">
+		<label for="taskDueDate">Deadline</label>
+		<input type="date" class="form-control" name="taskDueDate">
+	</div>
+	<button type="submit" class="btn btn-default">Submit</button>
+</form>
+{% endblock %}

@@ -2,12 +2,9 @@
 {% block body %}
 {% if len(tasks) == 0 %}
 	<div class="jumbotron">
-		<h1>Welcome to {{ project.name }}!</h1>
 		<p>You don't have any tasks :(</p>
-		<p><a class="btn btn-default btn-lg" href="/newtask/{{ project.url }}" role="button">Fix That</a></p>
 	</div>
 {% else %}
-	<h3>{{ project.name }} <small><a href="/list">Projects</a></small></h3>
 	<table class="table">
 		{% for task in tasks %}
 			<tr class="{{ task.project.theme }}-{{ sorter(task.dueDate) }}">
@@ -17,12 +14,12 @@
 				<td>
 					{{ task.detail }}
 				</td>
+				<td>
+					<a href="/tasks/{{ task.project.url }}"></a>{{ task.project.name }}
+				</td>
 				<td syle="text-align:right;">
 					<a href="/edittask/{{ task.objectId }}"><span data-toggle="tooltip" data-placement="top" title="Edit Task" class="glyphicon glyphicon-edit"></span></a>
 					<a href="/deltask/{{ task.objectId }}"><span data-toggle="tooltip" data-placement="top" title="Delete Task" class="glyphicon glyphicon-remove-circle"></span></a>
-				</td>
-				<td>
-					{{ moment(task.dueDate).fromNow() }}
 				</td>
 				<td>
 					<input type="checkbox" class="completed">
@@ -31,5 +28,4 @@
 		{% endfor %}
 	</table>
 {% endif %}
-	<a href="/newtask/{{ project.url }}" class="btn btn-default btn-block">New Task</a>
 {% endblock %}
